@@ -137,6 +137,7 @@ function possibleMoves(props) {
     }
   }
   if (piece == 'black/bishop' || piece == 'white/bishop') {
+    // yee it cheanged
     let leftMoves = i % 8;
     let rightMoves = 8 - leftMoves;
     let nw = i; // north west diagonal
