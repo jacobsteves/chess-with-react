@@ -15,7 +15,7 @@ function changePos(props) {
   gameBoard[i] = lastPiece;
   gameBoard[lastPos] = null;
   nextPlayer = 1;
-  
+
   return lastPiece;
 }
 
@@ -51,7 +51,7 @@ var updatableImage = function (_React$Component3) {
 // SquareEven(props) creates a new clickable square, with alternating colours compared to SquareOdd
 function SquareEven(props) {
   if (gameBoard[props.value]) { // If props.value[1] (= squares[i]) within renderSquare() is not null, then let it be clicked
-    if (gameBoard[props.value] == available){
+    if (gameBoard[props.value] == available || availablePiece(gameBoard[props.value])){
       return React.createElement(
         "button",
         { className: "square-even", onClick: function onClick() {
@@ -89,11 +89,11 @@ function SquareEven(props) {
   );
 }
 
-// SquareEven(props) creates a new clickable square, with alternating colours compared to SquareOdd
+// SquareOdd(props) creates a new clickable square, with alternating colours compared to SquareOdd
 // These two functions could easily be reduced to one function, but I am very lazy
 function SquareOdd(props) {
   if (gameBoard[props.value]) { // If props.value[1] (= squares[i]) within renderSquare() is not null, then let it be clicked
-    if (gameBoard[props.value] == available){
+    if (gameBoard[props.value] == available || availablePiece(gameBoard[props.value])){
       return React.createElement(
         "button",
         { className: "square-odd", onClick: function onClick() {
