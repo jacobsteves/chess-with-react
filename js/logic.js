@@ -92,31 +92,31 @@ function diagonalMovement(props) {
   let i = props.value;
   let piece = gameBoard[i];
 
-  if(enemy(piece, gameBoard[i + 9])){
+  if(enemy(piece, gameBoard[i + 9]) && validRight(i, i + 9)){
     makeAvailable(i + 9);
   } else if(0 <= i + 9 && i + 9 <= 63 && !gameBoard[i + 9] && validRight(i, i + 9)){
     makeAvailable(i + 9);
-    if(enemy(piece, gameBoard[i + 18])){
+    if(enemy(piece, gameBoard[i + 18]) && validRight(i, i + 18)){
       makeAvailable(i + 18);
     } else if(0 <= i + 18 && i + 18 <= 63 && !gameBoard[i + 18] && validRight(i, i + 18)){
       makeAvailable(i + 18);
-      if(enemy(piece, gameBoard[i + 27])){
+      if(enemy(piece, gameBoard[i + 27]) && validRight(i, i + 27)){
         makeAvailable(i + 27);
       } else if(0 <= i + 27 && i + 27 <= 63 && !gameBoard[i + 27] && validRight(i, i + 27)){
         makeAvailable(i + 27);
-        if(enemy(piece, gameBoard[i + 36])){
+        if(enemy(piece, gameBoard[i + 36]) && validRight(i, i + 36)){
           makeAvailable(i + 36);
         } else if(0 <= i + 36 && i + 36 <= 63 && !gameBoard[i + 36] && validRight(i, i + 36)){
           makeAvailable(i + 36);
-          if(enemy(piece, gameBoard[i + 45])){
+          if(enemy(piece, gameBoard[i + 45]) && validRight(i, i + 45)){
             makeAvailable(i + 45);
           } else if(0 <= i + 45 && i + 45 <= 63 && !gameBoard[i + 45] && validRight(i, i + 45)){
             makeAvailable(i + 45);
-            if(enemy(piece, gameBoard[i + 54])){
+            if(enemy(piece, gameBoard[i + 54]) && validRight(i, i + 54)){
               makeAvailable(i + 54);
             } else if(0 <= i + 54 && i + 54 <= 63 && !gameBoard[i + 54] && validRight(i, i + 54)){
               makeAvailable(i + 54);
-              if(enemy(piece, gameBoard[i + 63])){
+              if(enemy(piece, gameBoard[i + 63]) && validRight(i, i + 63)){
                 makeAvailable(i + 63);
               } else if(0 <= i + 63 && i + 63 <= 63 && !gameBoard[i + 63] && validRight(i, i + 63)){
                 makeAvailable(i + 63);
@@ -127,31 +127,31 @@ function diagonalMovement(props) {
       }
     }
   }
-  if(enemy(piece, gameBoard[i - 9])){
+  if(enemy(piece, gameBoard[i - 9]) && validLeft(i, i - 9)){
     makeAvailable(i - 9);
   } else if(0 <= i - 9 && i - 9 <= 63 && !gameBoard[i - 9] && validLeft(i, i - 9)){
     makeAvailable(i - 9);
-    if(enemy(piece, gameBoard[i - 18])){
+    if(enemy(piece, gameBoard[i - 18]) && validLeft(i, i - 18)){
       makeAvailable(i - 18);
     } else if(0 <= i - 18 && i - 18 <= 63 && !gameBoard[i - 18] && validLeft(i, i - 18)){
       makeAvailable(i - 18);
-      if(enemy(piece, gameBoard[i - 27])){
+      if(enemy(piece, gameBoard[i - 27]) && validLeft(i, i - 27)){
         makeAvailable(i - 27);
       } else if(0 <= i - 27 && i - 27 <= 63 && !gameBoard[i - 27] && validLeft(i, i - 27)){
         makeAvailable(i - 27);
-        if(enemy(piece, gameBoard[i - 36])){
+        if(enemy(piece, gameBoard[i - 36]) && validLeft(i, i - 36)){
           makeAvailable(i - 36);
         } else if(0 <= i - 36 && i - 36 <= 63 && !gameBoard[i - 36] && validLeft(i, i - 36)){
           makeAvailable(i - 36)
-          if(enemy(piece, gameBoard[i - 45])){
+          if(enemy(piece, gameBoard[i - 45]) && validLeft(i, i - 45)){
             makeAvailable(i - 45);
           } else if(0 <= i - 45 && i - 45 <= 63 && !gameBoard[i - 45] && validLeft(i, i - 45)){
             makeAvailable(i - 45);
-            if(enemy(piece, gameBoard[i - 54])){
+            if(enemy(piece, gameBoard[i - 54]) && validLeft(i, i - 54)){
               makeAvailable(i - 54);
             } else if(0 <= i - 54 && i - 54 <= 63 && !gameBoard[i - 54] && validLeft(i, i - 54)){
               makeAvailable(i - 54);
-              if(enemy(piece, gameBoard[i - 63])){
+              if(enemy(piece, gameBoard[i - 63]) && validLeft(i, i - 63)){
                 makeAvailable(i - 63);
               } else if(0 <= i - 63 && i - 63 <= 63 && !gameBoard[i - 63] && validLeft(i, i - 63)){
                 makeAvailable(i - 63);
@@ -163,31 +163,31 @@ function diagonalMovement(props) {
     }
   }
 
-  if(enemy(piece, gameBoard[i + 7])){
+  if(enemy(piece, gameBoard[i + 7]) && validLeft(i, i + 7)){
     makeAvailable(i + 7);
   } else if(0 <= i + 7 && i + 7 <= 63 && !gameBoard[i + 7] && validLeft(i, i + 7)){
     makeAvailable(i + 7);
-    if(enemy(piece, gameBoard[i + 14])){
+    if(enemy(piece, gameBoard[i + 14]) && validLeft(i, i + 14)){
       makeAvailable(i + 14);
     } else if(0 <= i + 14 && i + 14 <= 63 && !gameBoard[i + 14] && validLeft(i, i + 14)){
       makeAvailable(i + 14);
-      if(enemy(piece, gameBoard[i + 21])){
+      if(enemy(piece, gameBoard[i + 21]) && validLeft(i, i + 21)){
         makeAvailable(i + 21);
       } else if(0 <= i + 21 && i + 21 <= 63 && !gameBoard[i + 21] && validLeft(i, i + 21)){
         makeAvailable(i + 21);
-        if(enemy(piece, gameBoard[i + 28])){
+        if(enemy(piece, gameBoard[i + 28]) && validLeft(i, i + 28)){
           makeAvailable(i + 28);
         } else if(0 <= i + 28 && i + 28 <= 63 && !gameBoard[i + 28] && validLeft(i, i + 28)){
           makeAvailable(i + 28);
-          if(enemy(piece, gameBoard[i + 35])){
+          if(enemy(piece, gameBoard[i + 35]) && validLeft(i, i + 35)){
             makeAvailable(i + 35);
           } else if(0 <= i + 35 && i + 35 <= 63 && !gameBoard[i + 35] && validLeft(i, i + 35)){
             makeAvailable(i + 35);
-            if(enemy(piece, gameBoard[i + 42])){
+            if(enemy(piece, gameBoard[i + 42]) && validLeft(i, i + 42)){
               makeAvailable(i + 42);
             } else if(0 <= i + 42 && i + 42 <= 63 && !gameBoard[i + 42] && validLeft(i, i + 42)){
               makeAvailable(i + 42);
-              if(enemy(piece, gameBoard[i + 49])){
+              if(enemy(piece, gameBoard[i + 49]) && validLeft(i, i + 49)){
                 makeAvailable(i + 49);
               } else if(0 <= i + 49 && i + 49 <= 63 && !gameBoard[i + 49] && validLeft(i, i + 49)){
                 makeAvailable(i + 49);
@@ -199,31 +199,31 @@ function diagonalMovement(props) {
     }
   }
 
-  if(enemy(piece, gameBoard[i - 7])){
+  if(enemy(piece, gameBoard[i - 7]) && validRight(i, i - 7)){
     makeAvailable(i - 7);
   } else if(0 <= i - 7 && i - 7 <= 63 && !gameBoard[i - 7] && validRight(i, i - 7)){
     makeAvailable(i - 7);
-    if(enemy(piece, gameBoard[i - 14])){
+    if(enemy(piece, gameBoard[i - 14]) && validRight(i, i - 14)){
       makeAvailable(i - 14);
     } else if(0 <= i - 14 && i - 14 <= 63 && !gameBoard[i - 14] && validRight(i, i - 14)){
       makeAvailable(i - 14);
-      if(enemy(piece, gameBoard[i - 21])){
+      if(enemy(piece, gameBoard[i - 21]) && validRight(i, i - 21)){
         makeAvailable(i - 21);
       } else if(0 <= i - 21 && i - 21 <= 63 && !gameBoard[i - 21] && validRight(i, i - 21)){
         makeAvailable(i - 21);
-        if(enemy(piece, gameBoard[i - 28])){
+        if(enemy(piece, gameBoard[i - 28]) && validRight(i, i - 28)){
           makeAvailable(i - 28);
         } else if(0 <= i - 28 && i - 28 <= 63 && !gameBoard[i - 28] && validRight(i, i - 28)){
           makeAvailable(i - 28);
-          if(enemy(piece, gameBoard[i - 35])){
+          if(enemy(piece, gameBoard[i - 35]) && validRight(i, i - 35)){
             makeAvailable(i - 35);
           } else if(0 <= i - 35 && i - 35 <= 63 && !gameBoard[i - 35] && validRight(i, i - 35)){
             makeAvailable(i - 35);
-            if(enemy(piece, gameBoard[i - 42])){
+            if(enemy(piece, gameBoard[i - 42]) && validRight(i, i - 42)){
               makeAvailable(i - 42);
             } else if(0 <= i - 42 && i - 42 <= 63 && !gameBoard[i - 42] && validRight(i, i - 42)){
               makeAvailable(i - 42);
-              if(enemy(piece, gameBoard[i - 49])){
+              if(enemy(piece, gameBoard[i - 49]) && validRight(i, i - 49)){
                 makeAvailable(i - 49);
               } else if(0 <= i - 49 && i - 49 <= 63 && !gameBoard[i - 49] && validRight(i, i - 49)){
                 makeAvailable(i - 49);
@@ -247,31 +247,31 @@ function horizontalVerticalMovement(props) {
   let r = 0; // rightMoves counter
   let l = 0; // leftMoves counter
 
-  if(enemy(piece, gameBoard[i + 1])){
+  if(enemy(piece, gameBoard[i + 1]) && validRight(i, i + 1)){
     makeAvailable(i + 1);
   } else if(0 <= i + 1 && i + 1 <= 63 && !gameBoard[i + 1] && validRight(i, i + 1)){
     makeAvailable(i + 1);
-    if(enemy(piece, gameBoard[i + 2])){
+    if(enemy(piece, gameBoard[i + 2]) && validRight(i, i + 2)){
       makeAvailable(i + 2);
     } else if(0 <= i + 2 && i + 2 <= 63 && !gameBoard[i + 2] && validRight(i, i + 2)){
       makeAvailable(i + 2);
-      if(enemy(piece, gameBoard[i + 3])){
+      if(enemy(piece, gameBoard[i + 3]) && validRight(i, i + 3)){
         makeAvailable(i + 3);
       } else if(0 <= i + 3 && i + 3 <= 63 && !gameBoard[i + 3] && validRight(i, i + 3)){
         makeAvailable(i + 3);
-        if(enemy(piece, gameBoard[i + 4])){
+        if(enemy(piece, gameBoard[i + 4]) && validRight(i, i + 4)){
           makeAvailable(i + 4);
         } else if(0 <= i + 4 && i + 4 <= 63 && !gameBoard[i + 4] && validRight(i, i + 4)){
           makeAvailable(i + 4);
-          if(enemy(piece, gameBoard[i + 5])){
+          if(enemy(piece, gameBoard[i + 5]) && validRight(i, i + 5)){
             makeAvailable(i + 5);
           } else if(0 <= i + 5 && i + 5 <= 63 && !gameBoard[i + 5] && validRight(i, i + 5)){
             makeAvailable(i + 5);
-            if(enemy(piece, gameBoard[i + 6])){
+            if(enemy(piece, gameBoard[i + 6]) && validRight(i, i + 6)){
               makeAvailable(i + 6);
             } else if(0 <= i + 6 && i + 6 <= 63 && !gameBoard[i + 6] && validRight(i, i + 6)){
               makeAvailable(i + 6);
-              if(enemy(piece, gameBoard[i + 7])){
+              if(enemy(piece, gameBoard[i + 7]) && validRight(i, i + 7)){
                 makeAvailable(i + 7);
               } else if(0 <= i + 7 && i + 7 <= 63 && !gameBoard[i + 7] && validRight(i, i + 7)){
                 makeAvailable(i + 7);
@@ -282,31 +282,31 @@ function horizontalVerticalMovement(props) {
       }
     }
   }
-  if(enemy(piece, gameBoard[i - 1])){
+  if(enemy(piece, gameBoard[i - 1]) && validLeft(i, i - 1)){
     makeAvailable(i - 1);
   } else if(0 <= i - 1 && i - 1 <= 63 && !gameBoard[i - 1] && validLeft(i, i - 1)){
     makeAvailable(i - 1);
-    if(enemy(piece, gameBoard[i - 2])){
+    if(enemy(piece, gameBoard[i - 2]) && validLeft(i, i - 2)){
       makeAvailable(i - 2);
     } else if(0 <= i - 2 && i - 2 <= 63 && !gameBoard[i - 2] && validLeft(i, i - 2)){
       makeAvailable(i - 2);
-      if(enemy(piece, gameBoard[i - 3])){
+      if(enemy(piece, gameBoard[i - 3]) && validLeft(i, i - 3)){
         makeAvailable(i - 3);
       } else if(0 <= i - 3 && i - 3 <= 63 && !gameBoard[i - 3] && validLeft(i, i - 3)){
         makeAvailable(i - 3);
-        if(enemy(piece, gameBoard[i - 4])){
+        if(enemy(piece, gameBoard[i - 4]) && validLeft(i, i - 4)){
           makeAvailable(i - 4);
         } else if(0 <= i - 4 && i - 4 <= 63 && !gameBoard[i - 4] && validLeft(i, i - 4)){
           makeAvailable(i - 4);
-          if(enemy(piece, gameBoard[i - 5])){
+          if(enemy(piece, gameBoard[i - 5]) && validLeft(i, i - 5)){
             makeAvailable(i - 5);
           } else if(0 <= i - 5 && i - 5 <= 63 && !gameBoard[i - 5] && validLeft(i, i - 5)){
             makeAvailable(i - 5);
-            if(enemy(piece, gameBoard[i - 6])){
+            if(enemy(piece, gameBoard[i - 6]) && validLeft(i, i - 6)){
               makeAvailable(i - 6);
             } else if(0 <= i - 6 && i - 6 <= 63 && !gameBoard[i - 6] && validLeft(i, i - 6)){
               makeAvailable(i - 6);
-              if(enemy(piece, gameBoard[i - 7])){
+              if(enemy(piece, gameBoard[i - 7]) && validLeft(i, i - 7)){
                 makeAvailable(i - 7);
               } else if(0 <= i - 7 && i - 7 <= 63 && !gameBoard[i - 7] && validLeft(i, i - 7)){
                 makeAvailable(i - 7);
@@ -408,21 +408,21 @@ function possibleMoves(props) {
   //    only sometimes reupdate the corresponding SquareOdd/SquareEven. However, gameBoard does change the way we want to. So we somehow just need to find
   //    a way to update the value of the square to the corresponding gameBoard value each time a square is set to available.
   if (piece == 'black/knight' || piece == 'white/knight'){
-    if(i - 17 <= 63 && i - 17 >= 0 && !gameBoard[i - 17] && validLeft(i, i - 17)){
+    if(i - 17 <= 63 && i - 17 >= 0 && (!gameBoard[i - 17] || enemy(piece, gameBoard[i - 17])) && validLeft(i, i - 17)){
       makeAvailable(i - 17);
-    } if(0 <= i - 15 && i - 15 <= 63 && !gameBoard[i - 15] && validRight(i, i - 15)){
+    } if(0 <= i - 15 && i - 15 <= 63 && (!gameBoard[i - 15] || enemy(piece, gameBoard[i - 15])) && validRight(i, i - 15)){
       makeAvailable(i - 15);
-    } if(0 <= i - 6 && i - 6 <= 63 && !gameBoard[i - 6] && validRight(i, i - 6)){
+    } if(0 <= i - 6 && i - 6 <= 63 && (!gameBoard[i - 6] || enemy(piece, gameBoard[i - 6])) && validRight(i, i - 6)){
       makeAvailable(i - 6);
-    } if(0 <= i - 10 && i - 10 <= 63 && !gameBoard[i - 10] && validLeft(i, i - 10)){
+    } if(0 <= i - 10 && i - 10 <= 63 && (!gameBoard[i - 10] || enemy(piece, gameBoard[i - 10])) && validLeft(i, i - 10)){
       makeAvailable(i - 10);
-    } if(0 <= i + 6 && i + 6 <= 63 && !gameBoard[i + 6] && validLeft(i, i + 6)){
+    } if(0 <= i + 6 && i + 6 <= 63 && (!gameBoard[i + 6] || enemy(piece, gameBoard[i + 6])) && validLeft(i, i + 6)){
       makeAvailable(i + 6);
-    } if(0 <= i + 10 && i + 10 <= 63 && !gameBoard[i + 10] && validRight(i, i + 10)){
+    } if(0 <= i + 10 && i + 10 <= 63 && (!gameBoard[i + 10] || enemy(piece, gameBoard[i + 10])) && validRight(i, i + 10)){
       makeAvailable(i + 10);
-    } if(0 <= i + 15 && i + 15 <= 63 && !gameBoard[i + 15] && validLeft(i, i + 15)){
+    } if(0 <= i + 15 && i + 15 <= 63 && (!gameBoard[i + 15] || enemy(piece, gameBoard[i + 15])) && validLeft(i, i + 15)){
       makeAvailable(i + 15);
-    } if(0 <= i + 17 && i + 17 <= 63 && !gameBoard[i + 17] && validRight(i, i + 17)){
+    } if(0 <= i + 17 && i + 17 <= 63 && (!gameBoard[i + 17] || enemy(piece, gameBoard[i + 17])) && validRight(i, i + 17)){
       makeAvailable(i + 17);
     }
   }
@@ -435,28 +435,28 @@ function possibleMoves(props) {
   }
 
   if (piece == 'black/king' || piece == 'white/king') {
-      if(i - 8 >= 0 && !gameBoard[i - 8]){
+      if(i - 8 >= 0 && (!gameBoard[i - 8] || enemy(piece, gameBoard[i - 8]))){
         makeAvailable(i - 8);
       }
-      if(i + 8 <= 63 && !gameBoard[i + 8]){
-        makeAvailable(i - 8);
+      if(i + 8 <= 63 && (!gameBoard[i + 8] || enemy(piece, gameBoard[i + 8]))){
+        makeAvailable(i + 8);
       }
-      if(i - 1 >= 0 && !gameBoard[i - 1]){
+      if(i - 1 >= 0 && validLeft(i, i - 1) && (!gameBoard[i - 1] || enemy(piece, gameBoard[i - 1]))){
         makeAvailable(i - 1);
       }
-      if(i + 1 <= 63 && !gameBoard[i + 1]){
+      if(i + 1 <= 63 && validRight(i, i + 1) && (!gameBoard[i + 1] || enemy(piece, gameBoard[i + 1]))){
         makeAvailable(i + 1);
       }
-      if(i - 7 >= 0 && !gameBoard[i - 7] && validRight(i, i - 7)){
+      if(i - 7 >= 0 && validRight(i, i - 7) && (!gameBoard[i - 7] || enemy(piece, gameBoard[i - 7]))){
         makeAvailable(i - 7);
       }
-      if(i + 7 <= 63 && !gameBoard[i + 7] && validLeft(i, i + 7)){
+      if(i + 7 <= 63 && validLeft(i, i + 7) && (!gameBoard[i + 7] || enemy(piece, gameBoard[i + 7]))){
         makeAvailable(i + 7);
       }
-      if(i - 9 >= 0 && !gameBoard[i - 9] && validLeft(i, i + 9)){
+      if(i - 9 >= 0 && validLeft(i, i - 9) && (!gameBoard[i - 9] || enemy(piece, gameBoard[i - 9]))){
         makeAvailable(i - 9);
       }
-      if(i + 9 <= 63 && !gameBoard[i + 9] && validRight(i, i + 9)){
+      if(i + 9 <= 63 && validRight(i, i + 9) && (!gameBoard[i + 9] || enemy(piece, gameBoard[i + 9]))){
         makeAvailable(i + 9);
       }
   }
@@ -509,7 +509,7 @@ function clearAvailable() {
 
   for(i = 0; i < len; ++i){
     if(availablePiece(gameBoard[i])){
-      gameBoard[i] = gameBoard[i].substring('available'.length);
+      gameBoard[i] = gameBoard[i].substring('available/'.length);
     } else if(gameBoard[i] === 'available'){
       gameBoard[i] = null;
     }

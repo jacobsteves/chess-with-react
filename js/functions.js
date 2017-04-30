@@ -61,7 +61,7 @@ function SquareEven(props) {
             //alert('This is available!')
           );
           } },
-          React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
+          React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon'})
       );
     }
     return React.createElement(
@@ -71,7 +71,7 @@ function SquareEven(props) {
         possibleMoves(props);
         return (
           props.onClick()
-          //alert('Unavailable!')
+          //alert('This is a piece!')
         );
         } },
         React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
