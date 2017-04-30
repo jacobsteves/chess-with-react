@@ -1,3 +1,10 @@
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 // changePos(props) changes the position of the previously selected figure to the newly selected position
 // effects: changes gameBoard
 function changePos(props) {
@@ -7,10 +14,39 @@ function changePos(props) {
 
   gameBoard[i] = lastPiece;
   gameBoard[lastPos] = null;
-  offset = 0;
-
+  nextPlayer = 1;
+  
   return lastPiece;
 }
+
+// function updatableImage(props) {
+//   updatableImage.prototype.render = function render() {
+//     this.state = {
+//       value; gameBoard[props.value]
+//     };
+//   }
+// }
+
+var updatableImage = function (_React$Component3) {
+  _inherits(updatableImage, _React$Component3);
+
+  function updatableImage() {
+    _classCallCheck(this, updatableImage);
+
+    var _this5 = _possibleConstructorReturn(this, _React$Component3.call(this));
+
+    _this5.state = {
+      vale: gameBoard[props.value]
+    };
+    return _this5;
+  }
+
+  updatableImage.prototype.render = function render() {
+    return React.createElement("img", { src: "img/" + this.state.value + ".png", className: 'icon' });
+  };
+
+  return updatableImage;
+}(React.Component);
 
 // SquareEven(props) creates a new clickable square, with alternating colours compared to SquareOdd
 function SquareEven(props) {
@@ -21,8 +57,8 @@ function SquareEven(props) {
         { className: "square-even", onClick: function onClick() {
           changePos(props);
           return (
-            props.onClick(),
-            alert('This is available!')
+            props.onClick()
+            //alert('This is available!')
           );
           } },
           React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
@@ -34,8 +70,8 @@ function SquareEven(props) {
         clearAvailable();
         possibleMoves(props);
         return (
-          props.onClick(),
-          alert('Unavailable!')
+          props.onClick()
+          //alert('Unavailable!')
         );
         } },
         React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
@@ -43,7 +79,12 @@ function SquareEven(props) {
   }
   return React.createElement( // If props.value[1] is null, then dont let it be clicked
     "button",
-    { className: "square-even" },
+    { className: "square-even", onClick: function onClick() {
+      return (
+        alert('cant be clicked mayne')
+        //alert('Unavailable!')
+      );
+      }  },
       React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
   );
 }
@@ -58,8 +99,8 @@ function SquareOdd(props) {
         { className: "square-odd", onClick: function onClick() {
           changePos(props);
           return (
-            props.onClick(),
-            alert('This is available!')
+            props.onClick()
+            //alert('This is available!')
           );
           } },
           React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
@@ -71,8 +112,8 @@ function SquareOdd(props) {
         clearAvailable();
         possibleMoves(props);
         return (
-          props.onClick(),
-          alert('Unavailable!')
+          props.onClick()
+          //alert('Unavailable!')
         );
         } },
         React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
@@ -80,17 +121,13 @@ function SquareOdd(props) {
   }
   return React.createElement( // If props.value[1] is null, then dont let it be clicked
     "button",
-    { className: "square-odd" },
+    { className: "square-odd",
+    onClick: function onClick() {
+      return (
+        alert('cant be clicked mayne')
+        //alert('Unavailable!')
+      );
+      }   },
       React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
   );
-}
-
-// sameRow(a, b) determines if a and b are within the same row
-function sameRow(a, b){
-  return math.abs(a - b) < 8;
-}
-
-// sameColumn(a, b) determines if a and b are within the same column
-function sameColumn(a, b) {
-  return a % 8 == b % 8;
 }

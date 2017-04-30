@@ -4,11 +4,11 @@
 
 var row = 1; // r = Row, this variable is used take offset into account when colouring the board
 var available = 'available';
-var offset = 0;
 var lastPiece = '';
 var lastPos = -1;
+var nextPlayer = 1; //Bool
 var gameBoard = populateBoard();
-// Store last clicked item in a variable, and if green gets clicked then trigger another variable that switces players and then search squares to chang everything
+
 //============================================================================================
 
 
@@ -41,11 +41,11 @@ var Board = function (_React$Component) {
     }
     if(isEven(i + row)){
       return React.createElement(SquareEven,
-        { value: i, onClick: function onClick() { return _this2.props.onClick(i + offset) }
+        { value: i, onClick: function onClick() { return _this2.props.onClick(i) }
       });
     } else {
       return React.createElement(SquareOdd,
-        { value: i, onClick: function onClick() { return _this2.props.onClick(i + offset) }
+        { value: i, onClick: function onClick() { return _this2.props.onClick(i) }
       });
     }
   };
@@ -181,20 +181,23 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
   Game.prototype.handleClick = function handleClick(i) {
     var history = this.state.history.slice(0, this.state.stepNumber + 1);
     var current = history[history.length - 1];
-    var squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? 'B' : 'W';
+    var squares = gameBoard.slice();
+    // if (calculateWinner(squares) || squares[i]) {
+    //   return;
+    // }
+    squares[i] = this.state.xIsNext ? 'Black' : 'White';
 
-    this.setState({
-      history: history.concat([{
-        squares: squares
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext
-    });
-  };
+    if (nextPlayer) {
+      this.setState({
+        stepNumber: history.length,
+        history: history.concat([{
+          squares: squares // This concatnates the current board to the history
+        }]),
+        xIsNext: !this.state.xIsNext
+      });
+      //nextPlayer = 0;
+    }
+}
 
   Game.prototype.jumpTo = function jumpTo(step) {
     this.setState({
@@ -213,8 +216,8 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
     var status = undefined;
     if (winner) {
       status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    } else if (nextPlayer){
+      status = 'Next player: ' + (this.state.xIsNext ? 'Black' : 'White');
     }
 
     var moves = history.map(function (step, move) {

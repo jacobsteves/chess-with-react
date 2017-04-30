@@ -1,3 +1,23 @@
+// sameRow(a, b) determines if a and b are within the same row
+function sameRow(a, b){
+  return math.abs(a - b) < 8;
+}
+
+// sameColumn(a, b) determines if a and b are within the same column
+function sameColumn(a, b) {
+  return a % 8 == b % 8;
+}
+
+// blackPiece(a) determines whether a is a valid black piece
+function blackPiece(a){
+  return a == 'black/rook' || a == 'black/knight' || a == 'black/queen' || a == 'black/king' || a == 'black/bishop';
+}
+
+// whitePiece(a) determines whether a is a valid white piece
+function whitePiece(a){
+  return a == 'white/rook' || a == 'white/knight' || a == 'white/queen' || a == 'white/king' || a == 'white/bishop';
+}
+
 // populateBoard() creates a new board with the positions of the figures in the correct order
 function populateBoard() {
   let newArr = Array(64).fill(null);
@@ -62,28 +82,20 @@ function possibleMoves(props) {
   if (piece == 'black/knight' || piece == 'white/knight'){
     if(i - 17 <= 63 && i - 17 >= 0 && !gameBoard[i - 17]){
       gameBoard[i - 17] = available;
-      offset += i - 17;
     } if(0 <= i - 15 && i - 15 <= 63 && !gameBoard[i - 15]){
       gameBoard[i - 15] = available;
-      offset += i - 15;
     } if(0 <= i - 6 && i - 6 <= 63 && !gameBoard[i - 6]){
       gameBoard[i - 6] = available;
-      offset += i - 6;
     } if(0 <= i - 10 && i - 10 <= 63 && !gameBoard[i - 10]){
       gameBoard[i - 10] = available;
-      offset += i - 10;
     } if(0 <= i + 6 && i + 6 <= 63 && !gameBoard[i + 6]){
       gameBoard[i + 6] = available;
-      offset += i + 6;
     } if(0 <= i + 10 && i + 10 <= 63 && !gameBoard[i + 10]){
       gameBoard[i + 10] = available;
-      offset += i + 10;
     } if(0 <= i + 15 && i + 15 <= 63 && !gameBoard[i + 15]){
       gameBoard[i + 15] = available;
-      offset += i + 15;
     } if(0 <= i + 17 && i + 17 <= 63 && !gameBoard[i + 17]){
       gameBoard[i + 17] = available;
-      offset += i + 17;
     }
   }
   if (piece == 'black/bishop' || piece == 'white/bishop') {
@@ -93,7 +105,6 @@ function possibleMoves(props) {
   if (piece == 'black/rook' || piece == 'white/rook') {
     for(a = 0; sameRow(a, i); ++a){
       gameBoard[i + a] = available;
-      //offset = [];
     }
   }
 
@@ -108,39 +119,33 @@ function possibleMoves(props) {
   if (piece == 'black/pawn'){
     if(i - 8 >= 0 && !gameBoard[i - 8]){
       gameBoard[i - 8] = available;
-      offset = i - 8;
     } if(48 <= i && i <= 55 && !gameBoard[i - 16]){ // If pawn is at starting position, it can move two spaces up
       gameBoard[i - 16] = available;
-      offset = i - 16;
-    } if(i - 7 >= 0 && gameBoard[i - 7]){ // If there is an enemy diagonal to the pawn, it can take it
+    } if(i - 7 >= 0 && whitePiece(gameBoard[i - 7])){ // If there is an enemy diagonal to the pawn, it can take it
       gameBoard[i - 7] = available;
-      offset = i - 7;
-    } if(i - 9 >= 0 && gameBoard[i - 9]){
+    } if(i - 9 >= 0 && whitePiece(gameBoard[i - 9])){
       gameBoard[i - 9] = available;
-      offset = i - 9;
     }
   }
 
   if (piece == 'white/pawn'){
     if(i + 8 >= 0 && !gameBoard[i + 8]){
       gameBoard[i + 8] = available;
-      offset = i + 8;
     } if(8 <= i && i <= 15 && !gameBoard[i + 16]){ // If pawn is at starting position, it can move two spaces up
       gameBoard[i + 16] = available;
-      offset = i + 16;
-    } if(i + 7 >= 0 && gameBoard[i + 7]){ // If there is an enemy diagonal to the pawn, it can take it
+    } if(i + 7 >= 0 && blackPiece(gameBoard[i + 7])){ // If there is an enemy diagonal to the pawn, it can take it
       gameBoard[i + 7] = available;
-      offset = i + 7;
-    } if(i + 9 >= 0 && gameBoard[i + 9]){
+    } if(i + 9 >= 0 && blackPiece(gameBoard[i + 9])){
       gameBoard[i + 9] = available;
-      offset = i + 9;
     }
   }
   alert(gameBoard);
   return React.createElement(
     "button",
     { className: "square-odd", onClick: function onClick() {
-        return props.onClick();
+        return (
+          props.onClick()
+        );
       } }//,
       //props.value[2]
   );
@@ -198,7 +203,5 @@ function clearAvailable(piece, pos) {
     }
     return;
   }
-
-  //offset = 0;
 
 }
