@@ -21,6 +21,14 @@ function whitePiece(a){
   return a === 'white/rook' || a === 'white/knight' || a === 'white/queen' || a === 'white/king' || a === 'white/bishop' || a === 'white/pawn';
 }
 
+function colour(a) {
+  if (whitePiece(a)) {
+    return 'White';
+  } else {
+    return 'Black';
+  }
+}
+
 function enemy(a, b){
   return blackPiece(a) != blackPiece(b) && whitePiece(a) != whitePiece(b);
 }

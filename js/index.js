@@ -6,9 +6,13 @@ var row = 1; // r = Row, this variable is used take offset into account when col
 var available = 'available';
 var lastPiece = '';
 var lastPos = -1;
-var nextPlayer = 1; //Bool
+var nextPlayer = true; //Bool
+var win = null;
 var gameBoard = populateBoard();
+var curPlayer = 'Black';
 
+//next step: insert gameBoard so that it is passed down through props. This will allow the moves to display once history is clicked.
+//     currently, since gameBoard is a global var, it overrides the history (as nothing new gets passed down when history changes);
 //============================================================================================
 
 
@@ -185,9 +189,9 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
     // if (calculateWinner(squares) || squares[i]) {
     //   return;
     // }
-    squares[i] = this.state.xIsNext ? 'Black' : 'White';
+    //squares[i] = this.state.xIsNext ? 'Black' : 'White';    //commented this out
 
-    if (nextPlayer) {
+    //if (nextPlayer) {
       this.setState({
         stepNumber: history.length,
         history: history.concat([{
@@ -196,7 +200,7 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
         xIsNext: !this.state.xIsNext
       });
       //nextPlayer = 0;
-    }
+    //}
 }
 
   Game.prototype.jumpTo = function jumpTo(step) {
@@ -214,10 +218,10 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
 
     var winner = calculateWinner(current.squares);
     var status = undefined;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else if (nextPlayer){
-      status = 'Next player: ' + (this.state.xIsNext ? 'Black' : 'White');
+    if (win) {
+      status = 'Winner: ' + win;
+    } else {
+      status = 'Next player: ' + curPlayer;
     }
 
     var moves = history.map(function (step, move) {
@@ -242,7 +246,7 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
         "div",
         null,
         React.createElement(Board, {
-          squares: current.squares,
+          squares: current.gameBoard,
           onClick: function onClick(i) {
             return _this4.handleClick(i);
           }
