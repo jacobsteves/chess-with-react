@@ -9,6 +9,7 @@ var lastPos = -1;
 var nextPlayer = true; //Bool
 var win = null;
 var gameBoard = populateBoard();
+var tempBoard = gameBoard;
 var curPlayer = 'Black';
 
 //next step: insert gameBoard so that it is passed down through props. This will allow the moves to display once history is clicked.
@@ -174,7 +175,10 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
 
     _this3.state = {
       history: [{
-        squares: populateBoard(),
+        squares: gameBoard,
+      }],
+      playerHistory: [{
+        curPlayer: curPlayer,
       }],
       stepNumber: 0,
       xIsNext: true
@@ -184,6 +188,7 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
 
   Game.prototype.handleClick = function handleClick(i) {
     var history = this.state.history.slice(0, this.state.stepNumber + 1);
+    var playerHistory = this.state.playerHistory.slice(0, this.state.stepNumber + 1);
     var current = history[history.length - 1];
     var squares = gameBoard.slice();
     // if (calculateWinner(squares) || squares[i]) {
@@ -197,13 +202,21 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
         history: history.concat([{
           squares: squares // This concatnates the current board to the history
         }]),
+        playerHistory: playerHistory.concat([{
+          curPlayer: curPlayer // This concatnates the current board to the history
+        }]),
         xIsNext: !this.state.xIsNext
       });
+      //alert(history[this.state.stepNumber]);
       //nextPlayer = 0;
     //}
 }
 
-  Game.prototype.jumpTo = function jumpTo(step) {
+  Game.prototype.jumpTo = function jumpTo(step, curboard) {
+    gameBoard = curboard;
+    if(step == 0){
+      gameBoard = populateBoard();
+    }
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 ? false : true
@@ -214,9 +227,10 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
     var _this4 = this;
 
     var history = this.state.history;
+    var playerHistory = this.state.playerHistory;
     var current = history[this.state.stepNumber];
-
     var winner = calculateWinner(current.squares);
+    //alert(playerHistory.curPlayer);
     var status = undefined;
     if (win) {
       status = 'Winner: ' + win;
@@ -225,18 +239,20 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
     }
 
     var moves = history.map(function (step, move) {
-      var desc = move ? 'Move #' + move : 'Game start';
+      if (nextPlayer){
+        var desc = move ? 'Move #' + move: 'Start';
+      }
       return React.createElement(
-        "li",
-        { key: move },
-        React.createElement(
-          "a",
-          { href: "#", onClick: function onClick() {
-              return _this4.jumpTo(move);
-            } },
-          desc
-        )
-      );
+          "li",
+          { key: move },
+          React.createElement(
+            "a",
+            { href: "#", onClick: function onClick() {
+                return _this4.jumpTo(move, history[move].squares);
+              } },
+            desc
+          )
+        );
     });
 
     return React.createElement(
@@ -246,7 +262,7 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
         "div",
         null,
         React.createElement(Board, {
-          squares: current.gameBoard,
+          squares: current.squares,
           onClick: function onClick(i) {
             return _this4.handleClick(i);
           }

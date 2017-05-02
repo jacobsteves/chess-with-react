@@ -11,13 +11,13 @@ function changePos(props) {
   let i = props.value;
   let piece = gameBoard[i];
   clearAvailable();
-
+  tempBoard = gameBoard;
   if(gameBoard[i] === 'black/king'){
     win = 'White';
   } else if(gameBoard[i] === 'white/king'){
     win = 'Black';
   }
-  
+
   if(curPlayer === 'Black'){
     curPlayer = 'White';
   } else {
