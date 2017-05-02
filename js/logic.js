@@ -497,15 +497,13 @@ function possibleMoves(props) {
       makeAvailable(i + 9);
     }
   }
-  //alert(gameBoard);
   return React.createElement(
     "button",
     { className: "square-odd", onClick: function onClick() {
         return (
           props.onClick()
         );
-      } }//,
-      //props.value[2]
+      } }
   );
 }
 
@@ -528,7 +526,6 @@ function clearAvailable2(piece, pos) {
 
   if (lastPiece == 'black/knight' || lastPiece == 'white/knight'){
     if(gameBoard[lastPos - 17] == available){
-      //alert('Last: ' + lastPiece + ' LastPos: ' + lastPos + ' i: ' + i + ' squares: ' + squares)
       gameBoard[lastPos - 17] = null;
     } if(gameBoard[lastPos - 15] == available){
       gameBoard[lastPos - 15] = null;

@@ -165,7 +165,7 @@ var Board = function (_React$Component) {
   return Board;
 }(React.Component);
 
-var Game = function (_React$Component2) { // This is just copied from the tutorial, nothing changed yet
+var Game = function (_React$Component2) {
   _inherits(Game, _React$Component2);
 
   function Game() {
@@ -191,25 +191,17 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
     var playerHistory = this.state.playerHistory.slice(0, this.state.stepNumber + 1);
     var current = history[history.length - 1];
     var squares = gameBoard.slice();
-    // if (calculateWinner(squares) || squares[i]) {
-    //   return;
-    // }
-    //squares[i] = this.state.xIsNext ? 'Black' : 'White';    //commented this out
 
-    //if (nextPlayer) {
-      this.setState({
-        stepNumber: history.length,
-        history: history.concat([{
-          squares: squares // This concatnates the current board to the history
-        }]),
-        playerHistory: playerHistory.concat([{
-          curPlayer: curPlayer // This concatnates the current board to the history
-        }]),
-        xIsNext: !this.state.xIsNext
-      });
-      //alert(history[this.state.stepNumber]);
-      //nextPlayer = 0;
-    //}
+    this.setState({
+      stepNumber: history.length,
+      history: history.concat([{
+        squares: squares // This concatnates the current board to the history
+      }]),
+      playerHistory: playerHistory.concat([{
+        curPlayer: curPlayer // This concatnates the current player to the history
+      }]),
+      xIsNext: !this.state.xIsNext
+    });
 }
 
   Game.prototype.jumpTo = function jumpTo(step, curboard) {
@@ -229,8 +221,7 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
     var history = this.state.history;
     var playerHistory = this.state.playerHistory;
     var current = history[this.state.stepNumber];
-    var winner = calculateWinner(current.squares);
-    //alert(playerHistory.curPlayer);
+
     var status = undefined;
     if (win) {
       status = 'Winner: ' + win;
@@ -292,19 +283,3 @@ var Game = function (_React$Component2) { // This is just copied from the tutori
 
 // Render the Game
 ReactDOM.render(React.createElement(Game, null), document.getElementById('root'));
-
-// Logic for Tic Tac Toe Winner
-function calculateWinner(squares) {
-  var lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-  for (var i = 0; i < lines.length; i++) {
-    var _lines$i = lines[i];
-    var a = _lines$i[0];
-    var b = _lines$i[1];
-    var c = _lines$i[2];
-
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}

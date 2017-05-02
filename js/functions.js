@@ -31,14 +31,7 @@ function changePos(props) {
   return lastPiece;
 }
 
-// function updatableImage(props) {
-//   updatableImage.prototype.render = function render() {
-//     this.state = {
-//       value; gameBoard[props.value]
-//     };
-//   }
-// }
-
+// updatableImage creates game objects which are automatically updated when the paramaters in props are changed
 var updatableImage = function (_React$Component3) {
   _inherits(updatableImage, _React$Component3);
 
@@ -68,10 +61,7 @@ function SquareEven(props) {
         "button",
         { className: "square-even", onClick: function onClick() {
           changePos(props);
-          return (
-            props.onClick()
-            //alert('This is available!')
-          );
+          return props.onClick();
           } },
           React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon'})
       );
@@ -81,22 +71,14 @@ function SquareEven(props) {
       { className: "square-even", onClick: function onClick() {
         clearAvailable();
         possibleMoves(props);
-        return (
-          props.onClick()
-          //alert('This is a piece!')
-        );
+        return props.onClick();
         } },
         React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
     );
   }
-  return React.createElement( // If props.value[1] is null, then dont let it be clicked
+  return React.createElement( // If gameBoard[props.value] is null, then dont let it be clicked
     "button",
-    { className: "square-even", onClick: function onClick() {
-      return (
-        alert('cant be clicked mayne')
-        //alert('Unavailable!')
-      );
-      }  },
+    { className: "square-even" },
       React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
   );
 }
@@ -110,10 +92,7 @@ function SquareOdd(props) {
         "button",
         { className: "square-odd", onClick: function onClick() {
           changePos(props);
-          return (
-            props.onClick()
-            //alert('This is available!')
-          );
+          return props.onClick();
           } },
           React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
       );
@@ -123,23 +102,14 @@ function SquareOdd(props) {
       { className: "square-odd", onClick: function onClick() {
         clearAvailable();
         possibleMoves(props);
-        return (
-          props.onClick()
-          //alert('Unavailable!')
-        );
+        return props.onClick();
         } },
         React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
     );
   }
   return React.createElement( // If props.value[1] is null, then dont let it be clicked
     "button",
-    { className: "square-odd",
-    onClick: function onClick() {
-      return (
-        alert('cant be clicked mayne')
-        //alert('Unavailable!')
-      );
-      }   },
+    { className: "square-odd" },
       React.createElement("img", { src: "img/" + gameBoard[props.value] + ".png", className: 'icon' })
   );
 }
